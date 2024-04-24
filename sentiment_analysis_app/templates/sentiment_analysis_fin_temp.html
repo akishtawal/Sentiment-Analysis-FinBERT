@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Sentiment Analysis</title>
+    <style>
+      /* Reset some default styles */
+      body, h1, h2, textarea, button {
+          margin: 0;
+          padding: 0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* Center the content vertically and horizontally */
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #333333; /* Dark shade background color */
+          margin: 0;
+      }
+
+      /* Container styles */
+      .container {
+          max-width: 600px;
+          margin: 0 auto; /* This will center the container horizontally */
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+          text-align: center;
+          display: flex;
+          flex-direction: column; /* Stack child elements vertically */
+          align-items: center; /* Center child elements horizontally */
+      }
+
+      /* Title styles */
+      .title {
+          font-size: 32px;
+          color: #333333;
+          margin-bottom: 10px;
+      }
+
+      /* Description styles */
+      .description {
+          font-size: 16px;
+          color: #666666;
+          margin-bottom: 20px;
+      }
+
+      /* Textarea styles */
+      textarea {
+          width: 100%;
+          height: 150px;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          resize: vertical;
+          margin-bottom: 10px;
+      }
+
+      /* Submit button styles */
+      button {
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #4CAF50;
+          color: #ffffff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+
+      /* Result styles */
+      .result {
+          font-size: 24px;
+          color: #333333;
+          margin-top: 20px;
+      }
+
+      /* Loading icon styles */
+      .loading {
+          font-size: 16px;
+          color: #666666;
+      }
+
+      .loading-spinner {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          border: 3px solid #f3f3f3;
+          border-top: 3px solid #3498db;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'sentiment_analysis_app/js/sentiment.js' %}"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Financial Sentiment Analysis</h1>
+        <p class="description">Enter your financial news text below to get a sentiment analysis</p>
+        <form id="sentiment-fin-form" method="post">
+            {% csrf_token %}
+            <textarea name="input_text" placeholder="Enter your text here..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="result"></div>
+    </div>
+</body>
+</html>
